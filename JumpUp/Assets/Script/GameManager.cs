@@ -1,5 +1,7 @@
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 namespace GameMgr
@@ -19,14 +21,15 @@ namespace GameMgr
 
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _player;
-        [SerializeField] private StageManager _stageManager;
-        [SerializeField] private UI_Manager _uiManager;
+        [SerializeField] private GameObject _playerPrefab;
+        private GameObject _player;
+        private StageManager _stageManager;
+        private MovePlatform _movePlatform;
+        private PlayUI _playUI;
 
         public static GameManager Instance;
         private GameState _gameState;
         private LevelType _levelType;
-
 
         //콤보상태
         private Combo _combo;
@@ -39,21 +42,29 @@ namespace GameMgr
         private bool _hpDecre = false;
         private int _partHpN = 0;
 
-        //초기화 위치
-        private Vector2 _stageInitialPos;
+        //스크롤
+        private bool _isScrollGo = false;
 
+        //초기화 위치
+        private GameObject _pos;
+
+        private bool isCreatePalyer = false;
 
         #region 프로퍼티
         public StageManager StageManager { get { return _stageManager; } }
+        public MovePlatform MovePlatform { get { return _movePlatform; } }
+        public GameObject Player { get { return _player; } }
         public GameState GameState { get { return _gameState; } set { _gameState = value; } }
         public LevelType ChoiceLevelType { get { return _levelType; } set { _levelType = value; } }
+        public int Life { get { return _life; } }
+        public bool IsScrollGo { get { return _isScrollGo; } }
+        public GameObject Pos { get { return _pos; } }
         #endregion
 
         //싱글톤
         //StageFlatform 빈 오브젝트 생성(FaltformMgr + 스크립트 추가 시키기) / 혹은 프리팹으로 미리 스크립트 넣어두기
         //플레이어 위치 지정
 
-        public int Life { get { return _life; } }
 
         private void Awake()
         {
@@ -61,17 +72,18 @@ namespace GameMgr
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                SceneManager.sceneLoaded += ChangeScene;
             }
-            else
+            else if (Instance != this)
             {
                 Destroy(gameObject);
             }
+            
         }
-        private void OnEnable()
+        private void OnDestroy()
         {
-            Init();
+            SceneManager.sceneLoaded -= ChangeScene;
         }
-
         public void Init()
         {
             //콤보상태
@@ -87,35 +99,18 @@ namespace GameMgr
 
         }
 
-
-        private void Update()
-        {
-            switch (_gameState)
-            {
-                case GameState.MainPage:
-                    break;
-                case GameState.Playing:
-                    HpParticle();
-                    break;
-                case GameState.StageChange:
-                    break;
-                case GameState.GameOver:
-                    break;
-            }
-        }
-
         // 목숨 감소 메서드
         public void DecreaseHP()
         {
             //트루면 hp차감
             _life -= 1;
-            Debug.Log("HP -1");
-            _player.gameObject.SetActive(false);
+            //Debug.Log("HP -1");
 
             // 목숨 남아있을 시
             if (_life > 0)
             {
-                Vector2 vector2 = _player.GetComponent<Player>().PlatformPos.transform.position;
+                Vector2 vector2 = _pos.transform.position;
+                vector2.y += 0.5f;
                 _player.transform.position = vector2;
                 _player.gameObject.SetActive(true);
             }
@@ -126,28 +121,38 @@ namespace GameMgr
             }
         }
 
-        public void Playing()
+        //씬 전환시 실행
+        private void ChangeScene(Scene scene, LoadSceneMode mode)
         {
-            _stageManager.gameObject.SetActive(true);
-            Instantiate(_player, _stageManager.Platform[0].transform);
+            if (scene.name == "GameScene")
+            {
+                Init();
+                _gameState = GameState.Playing;
+                _player = GameObject.Find("Player");
+                _stageManager = GameObject.Find("StageMgr").GetComponent<StageManager>();
+                _movePlatform = GameObject.Find("PlatformGroup").GetComponent<MovePlatform>();
+                _playUI = GameObject.Find("PlayUI").GetComponent<PlayUI>();
 
-            //스타트 버튼 누르면 플레이 상태
-            //메인UI 내리기
-            //플레이 UI 띄우기(스테이지 정보, 현재위치, 점수, 목숨, 콤보) 
+                if (isCreatePalyer == false)
+                {
+                    _player = Instantiate(_playerPrefab);
+                    _player.tag = "Player";
+                    isCreatePalyer = true;
+                }
+                if (isCreatePalyer == true)
+                {
+                    _player.GetComponent<Player>().StartPos = StageManager.Platform[0].transform.position;
+                    _player.GetComponent<Player>().transform.position = _player.GetComponent<Player>().CurrentPos();
 
-            //점수/체력 계산         
-        }
-
-        private void StageChange()
-        {
-
+                    _player.SetActive(true);
+                }
+            }
         }
 
         //점수
         public void ComboCal(int _comboN = 0)
         {
             _combo = (Combo)_comboN;
-            Debug.Log(_combo);
 
             switch (_combo)
             {
@@ -178,36 +183,23 @@ namespace GameMgr
                     }
                     break;
             }
-            _uiManager.ScoreInfo(_score);
-            _uiManager.HeartColor(_life);
+            _playUI.ScoreInfo(_score);
+            _playUI.HeartColor(_life);
+        }
+        //public void PlayerPos()
+        //{
+        //    PlayerCurrentPos
+        //}
+
+        public void CurrentPlayerPosInfo(GameObject gameObject)
+        {
+            _pos = gameObject;
         }
 
-        private void HpParticle()
+        public void IsScroll (bool go)
         {
-            if (_partHpN > 4 && _life < 5)
-            {
-                _partHpN -= 5;
-                _life += 1;
-            }
-        }
-
-        public void IsStep(GameObject obj)
-        {
-            if (obj.GetComponent<NormalPlatform>().IsStep == true)
-            {
-                obj.GetComponent<NormalPlatform>().IsStep = false;
-                if (_player.GetComponent<Player>().IsSuc < 4)
-                {
-                    _player.GetComponent<Player>().IsSuc++;
-                }
-                Debug.Log("새땅");
-            }
-            else
-            {
-                _player.GetComponent<Player>().IsSuc = 0;
-                Debug.Log("이미 밟았음");
-            }
-            ComboCal(_player.GetComponent<Player>().IsSuc);
+            _isScrollGo = go;
+            //Debug.Log("2. 스크롤 활성화");
         }
     }
 }

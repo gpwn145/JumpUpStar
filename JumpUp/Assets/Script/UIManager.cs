@@ -1,21 +1,12 @@
 using GameMgr;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _mainPanel;
-    [SerializeField] private GameObject _playingViewPanel;
     [SerializeField] private GameObject _choiceLvPanel;
-
-    private Color heartColor;
-    private Color cookieColor;
-    [SerializeField] private List<Image> _heartImage = new List<Image>();
-    [SerializeField] private List<Image> _cookieImage = new List<Image>();
-
-    [SerializeField] private Text _score;
 
     private void Awake()
     {
@@ -26,7 +17,6 @@ public class UI_Manager : MonoBehaviour
     {
         _mainPanel.SetActive(true);
         _choiceLvPanel.SetActive(false);
-        _playingViewPanel.SetActive(false);
         GameMgr.GameManager.Instance.GameState = GameState.MainPage;
     }
 
@@ -68,34 +58,7 @@ public class UI_Manager : MonoBehaviour
                 GameMgr.GameManager.Instance.ChoiceLevelType = LevelType.Infinite;
                 break;
         }
-        //선택하면 끄기
-        _choiceLvPanel.SetActive(false);
-        _playingViewPanel.SetActive(true);
-
-        //게임상태 플레이로 바꿈
-        GameMgr.GameManager.Instance.GameState = GameState.Playing;
-        //플레이모드 메서드 실행
-        GameMgr.GameManager.Instance.Playing();
+        SceneManager.LoadScene("GameScene");
     }
 
-    public void ScoreInfo(int score)
-    {
-        _score.text = $"{score}";
-    }
-
-    public void HeartColor(int lifeN)
-    {
-        for (int i = 0; i < lifeN; i++)
-        {
-            ColorUtility.TryParseHtmlString("#FEBBEA", out heartColor);
-            _heartImage[i].color = heartColor;
-        }
-
-        int N = 4;
-        for (int i = 0; i < 5 - lifeN; i++)
-        {
-            heartColor = Color.white;
-            _heartImage[N--].color = heartColor;
-        }
-    }
 }

@@ -12,10 +12,8 @@ public class NormalPlatform : MonoBehaviour
     protected float speed;
     protected Vector2 leftGoal;
     protected Vector2 rightGoal;
-    protected bool isStep;
 
     public PlatformType Type { get { return _platformID; } }
-    public bool IsStep { get { return isStep; } set { isStep = value; } }
 
     protected void Awake()
     {
@@ -25,7 +23,7 @@ public class NormalPlatform : MonoBehaviour
 
     protected void OnEnable()
     {
-        isStep = true;
+
     }
 
     protected void Update()

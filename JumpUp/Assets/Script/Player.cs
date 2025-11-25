@@ -15,62 +15,47 @@ public class Player : MonoBehaviour
     RaycastHit2D _hit;
 
     //위치
-    private GameObject _platformPos;
-    private Vector2 _stageInitialPos;
-    private bool isScroll = false;
-
-    //콤보성공여부
-    private int _isSuc;
+    private Vector2 _currentPos;
+    private Vector2 _startPos;
+    float _startHight = 1f;
+    private GameObject _playerCurrentPos;
 
     private Animator animator;
 
     #region 프로퍼티
-    public int IsSuc { get { return _isSuc; } set { _isSuc = value; } }
-    public GameObject PlatformPos { get { return _platformPos; } }
+    public Vector2 StartPos { get { return _startPos; } set { _startPos = value; } }
+    public GameObject PlayerCurrentPos { get { return _playerCurrentPos; }  }
     #endregion
 
     private void Awake()
     {
+        Debug.Log("플레이어 Awake");
         _rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        _startPos.y += _startHight;
     }
 
-    private void Start()
+    //private void FixedUpdate()
+    //{
+    //    _hit = Physics2D.Raycast(_rayFoot.position, Vector2.down, 0.2f, LayerMask.GetMask("Ground", "Death"));
+
+    //    if (_hit.collider != null)
+    //    {
+    //        if (_hit.collider.gameObject.layer == 3)
+    //        {
+    //            Debug.DrawRay(_rayFoot.position, Vector2.down * 0.2f, new Color(1, 0, 0));
+
+    //            //platformPos = _hit.collider.gameObject;
+    //        }
+    //    }
+    //}
+
+    public Vector2 CurrentPos()
     {
-        _platformPos = GameMgr.GameManager.Instance.StageManager.Platform[0];
-        transform.parent = _platformPos.transform;
+        _currentPos = _startPos;
+        _currentPos.y += _startHight;
 
-        _stageInitialPos.y = _platformPos.transform.position.y + 0.5f;
-        Debug.Log(transform.position);
-    }
-
-    private void FixedUpdate()
-    {
-        _hit = Physics2D.Raycast(_rayFoot.position, Vector2.down, 0.2f, LayerMask.GetMask("Ground", "Death"));
-
-        if (_hit.collider != null)
-        {
-            if (_hit.collider.gameObject.layer == 3)
-            {
-                Debug.DrawRay(_rayFoot.position, Vector2.down * 0.2f, new Color(1, 0, 0));
-
-                //platformPos = _hit.collider.gameObject;
-            }
-        }
-        //if(IsSetPos)
-        //{
-        //    PlayerPosSet(platformPos);
-        //    IsSetPos = false;
-        //}
-        if (isScroll)
-        {
-            transform.parent = null;
-            GameMgr.GameManager.Instance.StageManager.PlatformScroll();
-            transform.parent = GameMgr.GameManager.Instance.StageManager.Platform[0].transform;
-            if (GameMgr.GameManager.Instance.StageManager.Platforms.transform.position.y >= -5.5f)
-            {
-                isScroll =false;
-            }
-        }
+        return _currentPos;
     }
 
     //접촉할 때
@@ -78,24 +63,28 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == 3)
         {
-            //새로 밟은 땅 체크
-            GameMgr.GameManager.Instance.IsStep(collision.collider.gameObject);
             _isGrounded = true;
-            //IsSetPos = true;
 
             //새 부모지정
             transform.parent = collision.collider.gameObject.transform;
+            //현재위치 플랫폼 정보
+            _playerCurrentPos = collision.collider.gameObject;
+            GameMgr.GameManager.Instance.CurrentPlayerPosInfo(_playerCurrentPos);
 
-            //가장 위 발판인지 확인
-            if (collision.collider.gameObject == GameMgr.GameManager.Instance.StageManager.Platform[4])
-            {
-                isScroll = true;
-            }
+            _startPos = collision.collider.gameObject.transform.position;
+            _startPos.y += _startHight;
         }
 
         else if(collision.collider.gameObject.layer == 6)
         {
             GameMgr.GameManager.Instance.DecreaseHP();
+            _playerCurrentPos.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        if(collision.collider.gameObject.tag == "Block")
+        {
+            Debug.Log("1. 마지막 발판에 닿음");
+            GameMgr.GameManager.Instance.IsScroll(true);
         }
     }
 
@@ -114,44 +103,25 @@ public class Player : MonoBehaviour
         if (collision.collider.gameObject.layer == 3)
         {
             _isGrounded = false;
-            transform.parent = null;
+            if(transform.parent != null)
+            {
+                transform.parent = null;
+            }
+            GameMgr.GameManager.Instance.StageManager.PlatColActive();
         }
     }
 
     //점프 시스템
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (_isGrounded && GameMgr.GameManager.Instance.GameState == GameState.Playing)
+        if (_playerCurrentPos.tag != "Block")
         {
-            _rigid.linearVelocity = new Vector2(_rigid.linearVelocity.x, 0);
-            _rigid.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
-            animator.SetTrigger("Jump");
+            if (_isGrounded && GameMgr.GameManager.Instance.GameState == GameState.Playing)
+            {
+                _rigid.linearVelocity = new Vector2(_rigid.linearVelocity.x, 0);
+                _rigid.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
+                animator.SetTrigger("Jump");
+            }
         }
     }
-
-    //private void PlayerPosSet(GameObject obj)
-    //{
-    //    Vector2 _stageInitialPos;
-
-    //    //부모지정
-    //    transform.parent = obj.transform;
-    //    _stageInitialPos.y = obj.transform.position.y + 0.5f;
-
-    //    //위치 지정
-    //    // _stageInitialPos = transform.position;
-    //    //transform.localPosition = new Vector2(0f, 0.6f);
-
-    //    //if (_stageInitialPos.x < obj.transform.position.x + 0.01f || _stageInitialPos.x > obj.transform.position.x - 0.01f)
-    //    //{
-    //    //    _stageInitialPos.x = obj.transform.position.x;
-    //    //}
-
-    //    //if (_stageInitialPos.y < obj.transform.position.y + 0.01f || _stageInitialPos.y > obj.transform.position.y - 0.01f)
-    //    //{
-    //    //    _stageInitialPos.y = obj.transform.position.y + 0.5f;
-    //    //}
-
-    //    //위치 적용
-    //    //transform.position = _stageInitialPos;
-    //}
 }

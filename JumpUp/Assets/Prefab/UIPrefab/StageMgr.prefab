@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7672691599557547536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5574117260172249591}
+  - component: {fileID: 4734837964740831482}
+  m_Layer: 0
+  m_Name: StageMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5574117260172249591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672691599557547536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.21712, y: 0.16556, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4734837964740831482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672691599557547536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20d510aebe51904db1a2d32f3479662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  _onePlatformPrefab:
+  - {fileID: 2133857152937054081, guid: d3a0a693008333c40a4996ad98586419, type: 3}
+  - {fileID: 2133857152937054081, guid: e38a215991764e64aa751e349c0e42d8, type: 3}
+  - {fileID: 2133857152937054081, guid: 453b756d164312744a508fb50d5f4e80, type: 3}
+  _twoPlatformPrefab:
+  - {fileID: 2133857152937054081, guid: f8b8e333e04163b40b441d662ed58633, type: 3}
+  - {fileID: 2133857152937054081, guid: 5709f7bbb063ce04180f483b779aefbd, type: 3}
+  - {fileID: 2133857152937054081, guid: 5a3efc48577acd74dbbcde4df2e760e3, type: 3}
+  _triPlatformPrefab:
+  - {fileID: 2133857152937054081, guid: be7077a48ed41b441b677a34d50a9a71, type: 3}
+  - {fileID: 2133857152937054081, guid: d8a1042b6b8cedf488704f998d603d10, type: 3}
+  - {fileID: 2133857152937054081, guid: 54c83ae5a28679c459b4e901e97d3555, type: 3}
+  _Obstacle:
+  - {fileID: 4206452662115558450, guid: 63581faf1da7e2143885e344d5a61e4a, type: 3}
+  - {fileID: 2654458927794375434, guid: 73fc6f28f008fb94481c555febcbd0a9, type: 3}
+  - {fileID: 1808279223566549917, guid: 95655d41a5e130c47a11b13108651b70, type: 3}
