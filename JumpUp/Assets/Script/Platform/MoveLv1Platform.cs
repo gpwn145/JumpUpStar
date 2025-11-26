@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using GameMgr;
 
 public class MoveLv1Platform : NormalPlatform
 {
@@ -22,29 +23,32 @@ public class MoveLv1Platform : NormalPlatform
 
     protected new void Update()
     {
-        //현재 위치가 목표보다 작으면 = 왼쪽 끝을 넘어가면
-        if (transform.position.x <= -3f)
+        if(GameMgr.GameManager.Instance.IsScrollGo == false)
         {
-            isRight = true;
-            //Debug.Log($"왼쪽 끝, 방향전환");
-        }
+            //현재 위치가 목표보다 작으면 = 왼쪽 끝을 넘어가면
+            if (transform.position.x <= -3f)
+            {
+                isRight = true;
+                //Debug.Log($"왼쪽 끝, 방향전환");
+            }
 
-        //현재 위치가 목표보다 크면 = 오른쪽 끝을 넘어가면
-        else if (transform.position.x >= 3f)
-        {
-            isRight = false;
-            //Debug.Log($"오른쪽 끝, 방향전환");
-        }
+            //현재 위치가 목표보다 크면 = 오른쪽 끝을 넘어가면
+            else if (transform.position.x >= 3f)
+            {
+                isRight = false;
+                //Debug.Log($"오른쪽 끝, 방향전환");
+            }
 
-        if (isRight)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            //Debug.Log($"오른쪽으로 이동");
-        }
-        else
-        {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-            //Debug.Log($"왼쪽으로 이동");
+            if (isRight)
+            {
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
+                //Debug.Log($"오른쪽으로 이동");
+            }
+            else
+            {
+                transform.Translate(Vector2.left * speed * Time.deltaTime);
+                //Debug.Log($"왼쪽으로 이동");
+            }
         }
     }
 }

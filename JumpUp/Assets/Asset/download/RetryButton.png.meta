@@ -1,43 +1,31 @@
 fileFormatVersion: 2
-guid: b1723d42722c93645838aa3158cb1c49
+guid: be1c9bd5e450247438f176a2746fbe7c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2733202544975108410
-    second: HardString_0
+      213: 1781058356909251321
+    second: RetryButton_0
   - first:
-      213: 8419874211367770958
-    second: HardString_1
+      213: -6332013713528714262
+    second: RetryButton_1
   - first:
-      213: 247506521063535846
-    second: HardString_2
+      213: 6577978149334455512
+    second: RetryButton_2
   - first:
-      213: -4700756186767414331
-    second: HardString_3
+      213: 8477664933076597291
+    second: RetryButton_3
   - first:
-      213: 2869119844250880461
-    second: HardString_4
+      213: -6017350499226356767
+    second: RetryButton_4
   - first:
-      213: 8619891046982595196
-    second: HardString_5
+      213: -2860348141019409437
+    second: RetryButton_5
   - first:
-      213: -814939357704337938
-    second: HardString_6
+      213: 1183958534605808596
+    second: RetryButton_6
   - first:
-      213: 2037631091142025880
-    second: HardString_7
-  - first:
-      213: -1600863504802268874
-    second: HardString_8
-  - first:
-      213: 3831491616084848776
-    second: HardString_9
-  - first:
-      213: -3197628028573133966
-    second: HardString_10
-  - first:
-      213: 1027945127589819386
-    second: HardString_11
+      213: 8392669198255477625
+    second: RetryButton_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -159,12 +147,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HardString_0
+      name: RetryButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 179
+        width: 148
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -174,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c6a09734c6b11ad0800000000000000
-      internalID: -2733202544975108410
+      spriteID: 9fa11df932797b810800000000000000
+      internalID: 1781058356909251321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_1
+      name: RetryButton_1
       rect:
         serializedVersion: 2
         x: 23
@@ -196,19 +184,85 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4b5c0e1cf669d470800000000000000
-      internalID: 8419874211367770958
+      spriteID: aeb0834731b2028a0800000000000000
+      internalID: -6332013713528714262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_2
+      name: RetryButton_2
       rect:
         serializedVersion: 2
-        x: 37
+        x: 34
+        y: 3
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d49c53764ca94b50800000000000000
+      internalID: 6577978149334455512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RetryButton_3
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2af0dc0757b6a570800000000000000
+      internalID: 8477664933076597291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RetryButton_4
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 3
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3f79c2a931e7ca0800000000000000
+      internalID: -6017350499226356767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RetryButton_5
+      rect:
+        serializedVersion: 2
+        x: 118
         y: 13
-        width: 27
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,20 +272,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e4b59b9ed15f6300800000000000000
-      internalID: 247506521063535846
+      spriteID: 3e3d69045800e48d0800000000000000
+      internalID: -2860348141019409437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_3
+      name: RetryButton_6
       rect:
         serializedVersion: 2
-        x: 69
-        y: 0
+        x: 135
+        y: 10
         width: 13
-        height: 32
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,20 +294,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cb2200672f83ceb0800000000000000
-      internalID: -4700756186767414331
+      spriteID: 4d3a8fba3044e6010800000000000000
+      internalID: 1183958534605808596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_4
+      name: RetryButton_7
       rect:
         serializedVersion: 2
-        x: 83
+        x: 121
         y: 0
-        width: 20
-        height: 32
+        width: 27
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,162 +316,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc9099e0c4921d720800000000000000
-      internalID: 2869119844250880461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_5
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c72b7f1bc3100a770800000000000000
-      internalID: 8619891046982595196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_6
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee54c8ec8f0c0b4f0800000000000000
-      internalID: -814939357704337938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_7
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 892efca7eae174c10800000000000000
-      internalID: 2037631091142025880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_8
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 0
-        width: 12
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 639bf56cf1798c9e0800000000000000
-      internalID: -1600863504802268874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 20
-        width: 22
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 880ff9023513c2530800000000000000
-      internalID: 3831491616084848776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_10
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3
-        width: 19
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 273d011ff3ebf93d0800000000000000
-      internalID: -3197628028573133966
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_11
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 3
-        width: 34
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af3b592b5aef34e00800000000000000
-      internalID: 1027945127589819386
+      spriteID: 97351676b20c87470800000000000000
+      internalID: 8392669198255477625
       vertices: []
       indices: 
       edges: []
@@ -426,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 990069928a2664f468410d6c42d27b50
+    spriteID: ebad2ac71e8dc3a49b60769f4f54311b
     internalID: 0
     vertices: []
     indices: 
@@ -436,18 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HardString_0: -2733202544975108410
-      HardString_1: 8419874211367770958
-      HardString_10: -3197628028573133966
-      HardString_11: 1027945127589819386
-      HardString_2: 247506521063535846
-      HardString_3: -4700756186767414331
-      HardString_4: 2869119844250880461
-      HardString_5: 8619891046982595196
-      HardString_6: -814939357704337938
-      HardString_7: 2037631091142025880
-      HardString_8: -1600863504802268874
-      HardString_9: 3831491616084848776
+      RetryButton_0: 1781058356909251321
+      RetryButton_1: -6332013713528714262
+      RetryButton_2: 6577978149334455512
+      RetryButton_3: 8477664933076597291
+      RetryButton_4: -6017350499226356767
+      RetryButton_5: -2860348141019409437
+      RetryButton_6: 1183958534605808596
+      RetryButton_7: 8392669198255477625
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

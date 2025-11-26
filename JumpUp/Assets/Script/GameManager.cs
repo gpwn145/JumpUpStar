@@ -22,6 +22,11 @@ namespace GameMgr
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
+
+        private GameObject _2comboPrefab;
+        private GameObject _3comboPrefab;
+        private GameObject _4comboPrefab;
+
         private GameObject _player;
         private StageManager _stageManager;
         private MovePlatform _movePlatform;
@@ -36,6 +41,7 @@ namespace GameMgr
 
         //점수
         private int _score = 0;
+        private int _floor = 0;
 
         //목숨
         private int _life = 5;
@@ -57,7 +63,8 @@ namespace GameMgr
         public GameState GameState { get { return _gameState; } set { _gameState = value; } }
         public LevelType ChoiceLevelType { get { return _levelType; } set { _levelType = value; } }
         public int Life { get { return _life; } }
-        public bool IsScrollGo { get { return _isScrollGo; } }
+        public int Score { get { return _score; } }
+        public bool IsScrollGo { get { return _isScrollGo; } set { _isScrollGo = value; } }
         public GameObject Pos { get { return _pos; } }
         #endregion
 
@@ -91,6 +98,7 @@ namespace GameMgr
 
             //점수
             _score = 0;
+            _floor = 0;
 
             //목숨
             _life = 5;
@@ -112,12 +120,18 @@ namespace GameMgr
                 Vector2 vector2 = _pos.transform.position;
                 vector2.y += 0.5f;
                 _player.transform.position = vector2;
+                _player.GetComponent<Player>().PlayerCurrentPos.GetComponent<BoxCollider2D>().enabled = true;
+                Debug.Log($"{_player.GetComponent<Player>().PlayerCurrentPos.name} 켰음");
                 _player.gameObject.SetActive(true);
+                _player.GetComponent<Player>().IsRegen = true;
+                Debug.Log($"5. _isRegen = {_player.GetComponent<Player>().IsRegen}");
             }
             else if (_life < 1)
             {
                 _gameState = GameState.GameOver;
-                _player.gameObject.SetActive(false);
+                SceneManager.LoadScene("GameOver");
+                Destroy(_player.gameObject);
+                isCreatePalyer = false;
             }
         }
 
@@ -128,10 +142,17 @@ namespace GameMgr
             {
                 Init();
                 _gameState = GameState.Playing;
-                _player = GameObject.Find("Player");
+
                 _stageManager = GameObject.Find("StageMgr").GetComponent<StageManager>();
                 _movePlatform = GameObject.Find("PlatformGroup").GetComponent<MovePlatform>();
                 _playUI = GameObject.Find("PlayUI").GetComponent<PlayUI>();
+                _2comboPrefab = GameObject.Find("2Combo_0");
+                _3comboPrefab = GameObject.Find("3Combo_0");
+                _4comboPrefab = GameObject.Find("4Combo_0");
+
+                _2comboPrefab.SetActive(false);
+                _3comboPrefab.SetActive(false);
+                _4comboPrefab.SetActive(false);
 
                 if (isCreatePalyer == false)
                 {
@@ -139,13 +160,31 @@ namespace GameMgr
                     _player.tag = "Player";
                     isCreatePalyer = true;
                 }
+
                 if (isCreatePalyer == true)
                 {
                     _player.GetComponent<Player>().StartPos = StageManager.Platform[0].transform.position;
                     _player.GetComponent<Player>().transform.position = _player.GetComponent<Player>().CurrentPos();
 
+                    Debug.Log(_player);
                     _player.SetActive(true);
+
+                    //리스폰? Yes
+                    _player.GetComponent<Player>().IsRegen = true;
                 }
+
+
+                Debug.Log(_stageManager);
+                Debug.Log(_movePlatform);
+                Debug.Log(_playUI);
+            }
+
+            if (scene.name == "Menu")
+            {
+                _gameState = GameState.MainPage;
+                _stageManager = null;
+                _movePlatform = null;
+                _playUI = null;
             }
         }
 
@@ -153,29 +192,38 @@ namespace GameMgr
         public void ComboCal(int _comboN = 0)
         {
             _combo = (Combo)_comboN;
-
             switch (_combo)
             {
                 case Combo.Fail:
+                    _2comboPrefab.SetActive(false);
+                    _3comboPrefab.SetActive(false);
+                    _4comboPrefab.SetActive(false);
                     break;
                 case Combo.Base:
                     _score += 10;
+                    _floor++;
                     break;
                 case Combo.Combo:
+                    _2comboPrefab.SetActive(true);
                     _score += 50;
+                    _floor++;
                     if (_partHpN < 5)
                     {
                         _partHpN += 1;
                     }
                     break;
                 case Combo.Double:
+                    _3comboPrefab.SetActive(true);
                     _score += 150;
+                    _floor++;
                     if (_partHpN < 3)
                     {
                         _partHpN += 3;
                     }
                     break;
                 case Combo.Triple:
+                    _floor++;
+                    _4comboPrefab.SetActive(true);
                     _score += 300;
                     if (_life < 5)
                     {
@@ -183,8 +231,14 @@ namespace GameMgr
                     }
                     break;
             }
-            _playUI.ScoreInfo(_score);
+            if(_partHpN > 5)
+            {
+                _life += 1;
+                _partHpN -= 5;
+            }
+            _playUI.ScoreInfo(_score, _floor);
             _playUI.HeartColor(_life);
+            _playUI.CookieColor(_partHpN);
         }
         //public void PlayerPos()
         //{
@@ -199,7 +253,7 @@ namespace GameMgr
         public void IsScroll (bool go)
         {
             _isScrollGo = go;
-            //Debug.Log("2. 스크롤 활성화");
+            Debug.Log("2. 스크롤 활성화");
         }
     }
 }

@@ -1,43 +1,52 @@
 fileFormatVersion: 2
-guid: b1723d42722c93645838aa3158cb1c49
+guid: 997236995c846d146b4b14572bb6a2ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2733202544975108410
-    second: HardString_0
+      213: 1102224904086259606
+    second: LvChoice_0
   - first:
-      213: 8419874211367770958
-    second: HardString_1
+      213: -1121477984588578268
+    second: LvChoice_1
   - first:
-      213: 247506521063535846
-    second: HardString_2
+      213: -4167519374234179934
+    second: LvChoice_2
   - first:
-      213: -4700756186767414331
-    second: HardString_3
+      213: 7683694679610529617
+    second: LvChoice_3
   - first:
-      213: 2869119844250880461
-    second: HardString_4
+      213: 6671853895257390719
+    second: LvChoice_4
   - first:
-      213: 8619891046982595196
-    second: HardString_5
+      213: -7269888326218369868
+    second: LvChoice_5
   - first:
-      213: -814939357704337938
-    second: HardString_6
+      213: 9037306147870096647
+    second: LvChoice_6
   - first:
-      213: 2037631091142025880
-    second: HardString_7
+      213: -2249630009968479938
+    second: LvChoice_7
   - first:
-      213: -1600863504802268874
-    second: HardString_8
+      213: 6470149231873135462
+    second: LvChoice_8
   - first:
-      213: 3831491616084848776
-    second: HardString_9
+      213: -1919055222554837299
+    second: LvChoice_9
   - first:
-      213: -3197628028573133966
-    second: HardString_10
+      213: -6543815361243142067
+    second: LvChoice_10
   - first:
-      213: 1027945127589819386
-    second: HardString_11
+      213: -2673639552701817935
+    second: LvChoice_11
+  - first:
+      213: -1933848906573611198
+    second: LvChoice_12
+  - first:
+      213: -6056616017754232842
+    second: LvChoice_13
+  - first:
+      213: 6667170056987130664
+    second: LvChoice_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -159,12 +168,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HardString_0
+      name: LvChoice_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 179
+        width: 221
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -174,17 +183,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c6a09734c6b11ad0800000000000000
-      internalID: -2733202544975108410
+      spriteID: 69786aed5b3eb4f00800000000000000
+      internalID: 1102224904086259606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_1
+      name: LvChoice_1
       rect:
         serializedVersion: 2
-        x: 23
+        x: 34
+        y: 3
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4224d2107b5bf60f0800000000000000
+      internalID: -1121477984588578268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_2
+      rect:
+        serializedVersion: 2
+        x: 51
         y: 0
         width: 10
         height: 32
@@ -196,19 +227,129 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4b5c0e1cf669d470800000000000000
-      internalID: 8419874211367770958
+      spriteID: 2a6a638a53ff926c0800000000000000
+      internalID: -4167519374234179934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_2
+      name: LvChoice_3
       rect:
         serializedVersion: 2
-        x: 37
+        x: 62
+        y: 0
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1579eb4e997f1aa60800000000000000
+      internalID: 7683694679610529617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_4
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 3
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7e7f1cc4cf279c50800000000000000
+      internalID: 6671853895257390719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_5
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 0
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b4bef6b51b2c1b90800000000000000
+      internalID: -7269888326218369868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_6
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 3
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d304e4f06fa6d70800000000000000
+      internalID: 9037306147870096647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3135cbcc65b7c0e0800000000000000
+      internalID: -2249630009968479938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LvChoice_8
+      rect:
+        serializedVersion: 2
+        x: 153
         y: 13
-        width: 27
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,20 +359,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e4b59b9ed15f6300800000000000000
-      internalID: 247506521063535846
+      spriteID: 663909132769ac950800000000000000
+      internalID: 6470149231873135462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_3
+      name: LvChoice_9
       rect:
         serializedVersion: 2
-        x: 69
-        y: 0
+        x: 170
+        y: 10
         width: 13
-        height: 32
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,20 +381,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cb2200672f83ceb0800000000000000
-      internalID: -4700756186767414331
+      spriteID: dceb24351752e55e0800000000000000
+      internalID: -1919055222554837299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_4
+      name: LvChoice_10
       rect:
         serializedVersion: 2
-        x: 83
-        y: 0
+        x: 188
+        y: 13
         width: 20
-        height: 32
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,86 +403,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc9099e0c4921d720800000000000000
-      internalID: 2869119844250880461
+      spriteID: d48ab5d7992bf25a0800000000000000
+      internalID: -6543815361243142067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_5
+      name: LvChoice_11
       rect:
         serializedVersion: 2
-        x: 104
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c72b7f1bc3100a770800000000000000
-      internalID: 8619891046982595196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_6
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee54c8ec8f0c0b4f0800000000000000
-      internalID: -814939357704337938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_7
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 0
-        width: 20
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 892efca7eae174c10800000000000000
-      internalID: 2037631091142025880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HardString_8
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 0
+        x: 209
+        y: 13
         width: 12
-        height: 32
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,19 +425,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 639bf56cf1798c9e0800000000000000
-      internalID: -1600863504802268874
+      spriteID: 1bb16cb0ef255ead0800000000000000
+      internalID: -2673639552701817935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_9
+      name: LvChoice_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 20
-        width: 22
+        y: 3
+        width: 33
         height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -372,20 +447,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 880ff9023513c2530800000000000000
-      internalID: 3831491616084848776
+      spriteID: 24ff66a5aa69925e0800000000000000
+      internalID: -1933848906573611198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_10
+      name: LvChoice_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 19
-        height: 16
+        x: 156
+        y: 0
+        width: 27
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,20 +469,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 273d011ff3ebf93d0800000000000000
-      internalID: -3197628028573133966
+      spriteID: 6f761d832d392fba0800000000000000
+      internalID: -6056616017754232842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HardString_11
+      name: LvChoice_14
       rect:
         serializedVersion: 2
-        x: 34
-        y: 3
-        width: 34
-        height: 6
+        x: 191
+        y: 0
+        width: 30
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -416,8 +491,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: af3b592b5aef34e00800000000000000
-      internalID: 1027945127589819386
+      spriteID: 82bb6d7b7db868c50800000000000000
+      internalID: 6667170056987130664
       vertices: []
       indices: 
       edges: []
@@ -426,7 +501,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 990069928a2664f468410d6c42d27b50
+    spriteID: 6b8ff061d5f97a04a9fad19fe3eb52ba
     internalID: 0
     vertices: []
     indices: 
@@ -436,18 +511,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HardString_0: -2733202544975108410
-      HardString_1: 8419874211367770958
-      HardString_10: -3197628028573133966
-      HardString_11: 1027945127589819386
-      HardString_2: 247506521063535846
-      HardString_3: -4700756186767414331
-      HardString_4: 2869119844250880461
-      HardString_5: 8619891046982595196
-      HardString_6: -814939357704337938
-      HardString_7: 2037631091142025880
-      HardString_8: -1600863504802268874
-      HardString_9: 3831491616084848776
+      LvChoice_0: 1102224904086259606
+      LvChoice_1: -1121477984588578268
+      LvChoice_10: -6543815361243142067
+      LvChoice_11: -2673639552701817935
+      LvChoice_12: -1933848906573611198
+      LvChoice_13: -6056616017754232842
+      LvChoice_14: 6667170056987130664
+      LvChoice_2: -4167519374234179934
+      LvChoice_3: 7683694679610529617
+      LvChoice_4: 6671853895257390719
+      LvChoice_5: -7269888326218369868
+      LvChoice_6: 9037306147870096647
+      LvChoice_7: -2249630009968479938
+      LvChoice_8: 6470149231873135462
+      LvChoice_9: -1919055222554837299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

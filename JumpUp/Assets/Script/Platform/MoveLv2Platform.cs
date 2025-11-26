@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class MoveLv2Platform : MoveLv1Platform
 {
     protected new void Awake()

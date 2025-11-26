@@ -1,11 +1,16 @@
 using GameMgr;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class PlayUI : MonoBehaviour
 {
     [SerializeField] private GameObject _playingViewPanel;
+    [SerializeField] private Sprite _cookieNull;
+    [SerializeField] private Sprite _cookie;
+
+
 
     private Color heartColor;
     private Color cookieColor;
@@ -13,16 +18,18 @@ public class PlayUI : MonoBehaviour
     [SerializeField] private List<Image> _cookieImage = new List<Image>();
 
     [SerializeField] private Text _score;
+    [SerializeField] private Text _floor;
 
-
-    private void Init()
+    private void Awake()
     {
+
     }
 
 
-    public void ScoreInfo(int score)
+    public void ScoreInfo(int score, int floor)
     {
         _score.text = $"{score}";
+        _floor.text = $"{floor}";
     }
 
     public void HeartColor(int lifeN)
@@ -38,6 +45,19 @@ public class PlayUI : MonoBehaviour
         {
             heartColor = Color.white;
             _heartImage[N--].color = heartColor;
+        }
+    }
+
+    public void CookieColor(int CookieN)
+    {
+        for (int i = 0; i < _cookieImage.Count; i++)
+        {
+            _cookieImage[i].GetComponent<Image>().sprite = _cookieNull;
+        }
+
+        for (int i = 0; i < CookieN; i++)
+        {
+            _cookieImage[i].GetComponent<Image>().sprite = _cookie;
         }
     }
 }

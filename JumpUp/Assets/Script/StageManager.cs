@@ -30,16 +30,15 @@ public class StageManager : MonoBehaviour
     System.Random rand = new System.Random();
     private float speed = 3;
     //생성된 플렛폼
-    private GameObject[] _platform = new GameObject[5];
+    private GameObject[] _platform = new GameObject[9];
+    private int cycleN = 0;
 
-    private bool _isScrolling = false;
 
     private MovePlatform _movePlatform;
 
     #region 프로퍼티
     public GameObject[] Platform { get { return _platform; } }
     public GameObject PlatformGroup { get { return _platformGroup; } }
-    public bool IsScrolling { get { return _isScrolling; } set { _isScrolling = value; } }
 
     #endregion
     private void Awake()
@@ -47,42 +46,36 @@ public class StageManager : MonoBehaviour
         //Debug.Log("스테이지플렛폼 Awake");
         CreatePlatform();
         OverlapPlatform();
+    }
+
+    private void Start()
+    {
         _movePlatform = GameMgr.GameManager.Instance.MovePlatform;
     }
 
-    //private void Update()
-    //{
-    //    if (_isScrolling == false)
-    //    {
-    //        _isScrolling = true;
-    //        PlatformScroll(GameMgr.GameManager.Instance.IsScrollGo);
-    //        GameMgr.GameManager.Instance.IsScroll(false);
-    //    }
-    //}
+    private void Update()
+    {
+    }
 
     public void StopScroll()
     {
-        GameMgr.GameManager.Instance.Player.transform.parent = null;
-        //ReArrange();
-        _isScrolling = false;
+        for (int i = 0; i < _platform.Length; i++)
+        {
+            _platform[i].transform.parent = null;
+            Debug.Log("해제됨");
+        }
+        
+        ReArrange();
 
-        _movePlatform.transform.position = _movePlatform.OriginPos;
+       
+        //GameMgr.GameManager.Instance.Player.transform.parent = null;
     }
 
     //최초생성
     private void CreatePlatform()
     {
         float hight = -5.5f;
-
-        PlatformPosSet(0, hight, 1);
-        if (_platform[0] != null)
-        {
-            Debug.Log(_platform[0].name);
-        }
-        hight += 2;
-
-
-        for (int i = 1; i < 5; i++)
+        for (int i = 0; i < 9; i++)
         {
             PlatformPosSet(i, hight, 3);
 
@@ -96,14 +89,13 @@ public class StageManager : MonoBehaviour
 
         _platform[0].GetComponent<BoxCollider2D>().enabled = true;
         _platform[1].GetComponent<BoxCollider2D>().enabled = true;
-        _platform[4].tag = $"Block";
-
+        _platform[4].tag = "Block";
     }
 
     private void PlatformPosSet(int num, float hight, int prefabN)
     {
         _pos = new Vector2(rand.Next(-3, 4), hight);
-        _platform[num] = Instantiate(_onePlatformPrefab[rand.Next(0, prefabN)], _pos, transform.rotation, _platformGroup.transform);
+        _platform[num] = Instantiate(_onePlatformPrefab[rand.Next(0, prefabN)], _pos, transform.rotation, PlatformGroup.transform);
         _platform[num].name = $"Block-{num}";
 
         _platform[num].layer = 3;
@@ -117,12 +109,13 @@ public class StageManager : MonoBehaviour
         _platform[num].transform.position = _pos;
     }
 
+
     public void PlatColActive()
     {
         GameObject _playerCPos = GameMgr.GameManager.Instance.Pos;
         int num = 0;
 
-        for(int i = 0; i < _platform.Length; i++)
+        for (int i = 0; i < _platform.Length; i++)
         {
             if (_playerCPos == _platform[i])
             {
@@ -130,57 +123,66 @@ public class StageManager : MonoBehaviour
                 break;
             }
         }
-        if(num > 0)
-        {
-            _platform[num-1].GetComponent<BoxCollider2D>().enabled = false;
-        }
-        if (num < 4)
-        {
-            _platform[num+1].GetComponent<BoxCollider2D>().enabled = true;
-        }
-    }
 
-    //스테이지 전환 (5번발판 > 0번발판)
-    public void PlatformScroll(bool istrue)
-    {
-        //Debug.Log("3. 스크롤매서드 활성화");
-        //y좌표 기억 후, 아래로 스크롤
-        _platformGroup.GetComponent<MovePlatform>().IsGO(istrue);
-        _platformGroup.GetComponent<MovePlatform>().TargetPos(_platform[0].transform.position);
+        if (num < 8)
+        {
+            _platform[num + 1].GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log($"{num + 1}-{_platform[num + 1].name} 켰음");
+        }
+        if(num == 8)
+        {
+            _platform[0].GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log($"0-{_platform[0].name} 켰음");
+        }
     }
 
     public void ReArrange()
     {
-        //4번 블럭 > 0번블럭교체
-        Vector2 boxPos = new Vector2(_platform[4].transform.position.x, _platform[0].transform.position.y);
-        _platform[0].transform.position = boxPos;
+        float hight = 4.5f;
 
-        //안보이는 블럭 비활성화 (1~4)
-        for (int i = 1; i < 5; i++)
+        for (int i = 0; i < _platform.Length; i++)
         {
-            _platform[i].SetActive(false);
+            if (_platform[i].transform.position.y < -7f)
+            {
+                PlatformPosReSet(i, hight);
+                _platform[i].GetComponent<BoxCollider2D>().enabled = false;
+                hight += 2;
+            }
         }
 
-        float hight = -3.5f;
+        _movePlatform.MoveOriginPos();
 
-        //1,2,3,4 위치 재배치 후 활성화
-        for (int i = 1; i < 5; i++)
+        for (int i = 0; i < _platform.Length; i++)
         {
-            PlatformPosReSet(i, hight);
-            hight += 2;
+            _platform[i].transform.parent = _platformGroup.transform;
+            if(_platform[i].transform.position.y ==1)
+            {
+                _platform[i].tag = "Block";
+                Debug.Log($"{i}-{_platform[i].name}에 태그");
+            }
         }
     }
 
+    private NormalPlatform current;
+    private NormalPlatform next;
     //발판 중복 체크
     private void OverlapPlatform()
     {
         if (_platform != null)
         {
             int j = 1;
-            for (int i = 0; i < 4; i++)
+
+            for (int i = 0; i < _platform.Length - 1; i++)
             {
-                NormalPlatform current = _platform[i].GetComponent<NormalPlatform>();
-                NormalPlatform next = _platform[j].GetComponent<NormalPlatform>();
+                if (_platform[i].transform.position.y >= -8 && _platform[i].transform.position.y <= 0)
+                {
+                    current = _platform[i].GetComponent<NormalPlatform>();
+                }
+
+                if (_platform[j].transform.position.y >= -8 && _platform[j].transform.position.y <= 0)
+                {
+                    next = _platform[j].GetComponent<NormalPlatform>();
+                }
 
                 //노말발판일 경우 + 타입 비교
                 if (current.Type == PlatformType.Normal && current.Type == next.Type)
@@ -196,7 +198,7 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-           // Debug.Log("플렛폼 배열 비었음");
+            // Debug.Log("플렛폼 배열 비었음");
         }
     }
 }
